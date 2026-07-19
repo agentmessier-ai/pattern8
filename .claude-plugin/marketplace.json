@@ -1,0 +1,17 @@
+{
+  "name": "pattern8",
+  "owner": {
+    "name": "agentmessier-ai",
+    "url": "https://github.com/agentmessier-ai"
+  },
+  "metadata": {
+    "description": "Pattern8 — battle-tested, layer-classified production patterns for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "pattern8",
+      "source": "./",
+      "description": "Search battle-tested production patterns (technical/business/domain) via MCP; the catalog self-improves when something is missing."
+    }
+  ]
+}

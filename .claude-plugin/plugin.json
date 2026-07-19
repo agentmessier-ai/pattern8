@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "pattern8",
+  "displayName": "Pattern8",
+  "version": "0.2.2",
+  "description": "Search battle-tested, layer-classified production patterns (technical/business/domain) via MCP, and let the catalog self-improve when something's missing. Build on proven implementations instead of reinventing.",
+  "author": {
+    "name": "agentmessier-ai",
+    "url": "https://github.com/agentmessier-ai"
+  },
+  "repository": "https://github.com/agentmessier-ai/pattern8",
+  "keywords": [
+    "mcp",
+    "patterns",
+    "knowledge-base",
+    "code-search",
+    "production-patterns"
+  ]
+}

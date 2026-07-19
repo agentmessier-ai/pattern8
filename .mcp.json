@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "pattern8": {
+      "type": "http",
+      "url": "https://pattern8.agentmessier.ai/mcp/"
+    }
+  }
+}
