@@ -115,9 +115,12 @@ losing in-flight events on crash — per your answer").
    it's what naive implementations get wrong) → quality attributes → code. Get the
    name from `pattern_search` results first.
 4. **KB had no good answer** → `pattern_feedback(query="<original>", feedback="<what was missing>")` —
-   triggers live background research and returns a job id. A preliminary report typically
-   lands in ~5 minutes; finished results are delivered automatically on your next
-   pattern8 tool call. Call it when the KB genuinely missed, not for a so-so match
+   triggers live background research and returns a job id. In `feedback`, state the gap
+   concretely — what's missing and under what constraints (e.g. "no idempotent-retry
+   pattern for webhook consumers on serverless") — it goes straight to the research agent,
+   so specifics sharpen the result. A preliminary report typically lands in ~5 minutes;
+   finished results are delivered automatically on your next pattern8 tool call, even in a
+   later session. Call it when the KB genuinely missed, not for a so-so match
    (rate-limited per day).
 5. **Check queued research** → `pattern_job_status(job_id?)` — status of a specific
    feedback job, or with no argument, your unread completed jobs — worth one call at
