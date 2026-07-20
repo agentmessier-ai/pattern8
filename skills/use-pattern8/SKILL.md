@@ -115,16 +115,17 @@ losing in-flight events on crash — per your answer").
    it's what naive implementations get wrong) → quality attributes → code. Get the
    name from `pattern_search` results first.
 4. **KB had no good answer** → `pattern_feedback(query="<original>", feedback="<what was missing>")` —
-   triggers live background research and returns a job id. In `feedback`, state the gap
-   concretely — what's missing and under what constraints (e.g. "no idempotent-retry
-   pattern for webhook consumers on serverless") — it goes straight to the research agent,
-   so specifics sharpen the result. A preliminary report typically lands in ~5 minutes;
-   finished results are delivered automatically on your next pattern8 tool call, even in a
-   later session. Call it when the KB genuinely missed, not for a so-so match
-   (rate-limited per day).
-5. **Check queued research** → `pattern_job_status(job_id?)` — status of a specific
-   feedback job, or with no argument, your unread completed jobs — worth one call at
-   the start of a session if you filed feedback previously.
+   records the gap for review. In `feedback`, state the gap concretely — what's missing
+   and under what constraints (e.g. "no idempotent-retry pattern for webhook consumers on
+   serverless") — it's read by a human curator and the research agent, so specifics
+   sharpen the result. It is NOT researched instantly: submitted gaps are reviewed and the
+   valuable ones researched; the resulting pattern lands in the catalog in a later release
+   and can surface automatically in your results on a later call. Call it when the KB
+   genuinely missed, not for a so-so match.
+5. **Check researched gaps** → `pattern_job_status(job_id?)` — status of research the team
+   has run on a gap you reported (by id, or with no argument your completed unread ones).
+   Most feedback has no job to poll — a gap is researched only after review — so this is
+   only relevant once something has been researched for you.
 
 ## How to apply a retrieved pattern
 
