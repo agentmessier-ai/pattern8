@@ -2,7 +2,8 @@
 
 Search **battle-tested, layer-classified production patterns** from real open-source
 projects, straight from Claude Code. Build on proven implementations instead of
-reinventing — and when the catalog is missing something, Pattern8 researches it for you.
+reinventing — and when the catalog is missing something, report the gap and it is
+reviewed for research.
 
 ## What it adds
 
@@ -15,16 +16,21 @@ reinventing — and when the catalog is missing something, Pattern8 researches i
   - `pattern_by_capability(capability, layer?, language?)` — **exact match**, keyed on
     a capability name (e.g. `rate-limit`, `auth`) — no fuzzy matching, use when you
     already know the exact capability.
-  - `pattern_get(pattern_name)` — **exact match**, keyed on a pattern's own unique
-    name. The full reference: contract → implementation → resilience → quality
-    attributes → code.
-  - `pattern_feedback(query, feedback)` — report a gap; queues live background
-    research to fill it. A preliminary report (which repos it's checking, and why) typically
-    lands in about 5 minutes; extraction results follow as each repo finishes and are
-    delivered automatically on your next tool call.
-  - `pattern_job_status(job_id?)` — check research queued via `pattern_feedback`.
-    With no argument, lists your unread completed jobs — useful at the start of a
-    session to pick up research that finished after you last asked.
+  - `pattern_get(pattern_name, full_code?)` — **exact match**, keyed on a pattern's own
+    unique name. The full reference: contract → implementation → resilience → quality
+    attributes → code. Set `full_code=true` when you are about to implement it: it
+    appends the complete source of every function the mechanism uses, each chunk headed
+    with its file, line range and upstream commit (large — request it only for the
+    pattern you will build from).
+  - `pattern_feedback(query, feedback)` — report that the catalog had no good answer.
+    The gap is recorded for review by a human curator; valuable gaps are researched and
+    the resulting pattern lands in a later catalog release. It is **not** researched
+    instantly, so there is nothing to poll for right after submitting. State the gap
+    concretely (what is missing, under what constraints) — specifics sharpen the result.
+  - `pattern_job_status(job_id?)` — status of research the team has run on a gap you
+    reported. With no argument, lists your completed, unread results. Most feedback has
+    no job to poll; when research for you does finish, it also surfaces automatically
+    on your next tool call.
 - **Skill `use-pattern8`** — nudges Claude to consult the catalog before implementing any
   production concern, and shows how to compile a user's request into an effective query.
 
