@@ -94,6 +94,26 @@ into implementer terms**. Examples:
 If the first result set reveals the capability has choices you didn't anticipate,
 re-query once with sharpened constraint terms rather than settling for a weak match.
 
+### One concern per query
+
+A task usually has several concerns: a billing webhook needs signature verification,
+idempotent processing, out-of-order handling and an atomic balance update. **List them
+first, then search each one separately.** A query that packs several concerns together
+gets matched on whichever one dominates, and the others disappear from the results.
+
+- Bad: `stripe webhook signature verification HMAC timestamp tolerance idempotent event dedup sqlite`
+- Good, as separate calls:
+  `stripe webhook signature verification` ·
+  `idempotent webhook processing dedup on event id` ·
+  `out-of-order webhook events last-write-wins by event timestamp`
+
+Leave storage and stack details out of the query (`sqlite`, `BEGIN IMMEDIATE`,
+`busy timeout`) unless the storage behaviour *is* the concern. They match patterns
+that merely use the same database. Pass the language with `language=`, not in the query.
+
+Searching per concern also tells you exactly which concern the KB could not answer.
+Report that one with `pattern_feedback` instead of a vague "results were weak".
+
 ### 4. Choose ON the constraints, not on rank
 
 The top result is the best *lexical/semantic* match, not necessarily the right
